@@ -36,3 +36,17 @@ fs.writeFileSync('index.html',home);
 fs.writeFileSync('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${escape(origin+url)}</loc></url>`).join('')}</urlset>`);
 fs.writeFileSync('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
 console.log(`Built ${urls.length} indexable pages.`);
+
+// Deploy the complete public site as static files. Do not deploy the local Node
+// server: its filesystem is not Vercel's static asset directory.
+const outputDir=path.join(__dirname,'dist');
+fs.mkdirSync(outputDir,{recursive:true});
+for(const name of ['assets','css','js'])fs.cpSync(path.join(__dirname,name),path.join(outputDir,name),{recursive:true});
+for(const name of ['robots.txt','sitemap.xml','site.webmanifest'])fs.copyFileSync(path.join(__dirname,name),path.join(outputDir,name));
+for(const url of urls){
+ const relative=url==='/'?'index.html':path.join(url.slice(1),'index.html');
+ const destination=path.join(outputDir,relative);
+ fs.mkdirSync(path.dirname(destination),{recursive:true});
+ fs.copyFileSync(path.join(__dirname,relative),destination);
+}
+console.log('Deployment output: dist/ (HTML, CSS, JavaScript, images and discovery files).');

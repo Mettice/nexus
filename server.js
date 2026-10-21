@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = Number(process.env.PORT) || 4180;
+const PUBLIC_ROOT = process.argv.includes('--dist') ? path.join(__dirname, 'dist') : __dirname;
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -25,8 +26,8 @@ const server = http.createServer((req, res) => {
   if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405, {Allow:'GET, HEAD'}); res.end(); return; }
   if (reqPath === '/') reqPath = '/index.html';
   if (reqPath.endsWith('/')) reqPath += 'index.html';
-  const filePath = path.resolve(__dirname, '.' + reqPath);
-  const relative = path.relative(__dirname, filePath);
+  const filePath = path.resolve(PUBLIC_ROOT, '.' + reqPath);
+  const relative = path.relative(PUBLIC_ROOT, filePath);
   if (relative.startsWith('..') || path.isAbsolute(relative) || !/^(index\.html|robots\.txt|sitemap\.xml|site\.webmanifest|(?:assets|css|js|categories|products|brands)[\\/].+)$/.test(relative)) {
     res.writeHead(404); res.end('404 Not Found'); return;
   }

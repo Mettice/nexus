@@ -11,8 +11,12 @@ for(const url of urls){
  assert.doesNotMatch(html,/[€£$]\s*\d/);assert.doesNotMatch(html,/undefined/);assert.match(html,/<link rel="canonical"/);assert.match(html,/<meta name="description"/);
  assert.doesNotMatch(html,/AI-generated|Available to source|Illustrative sourcing|Example variant/);
  for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs))JSON.parse(m[1]);
- for(const m of html.matchAll(/(?:href|src)="(\/[^"?#]*)/g)){
-  const asset=await fetch(origin+m[1],{method:'HEAD'});assert.equal(asset.status,200,`${url}: ${m[1]}`);
+ for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
+  const target=new URL(m[1].replace(/&amp;/g,'&'),origin+url);
+  if(target.origin!==origin)continue;
+  const asset=await fetch(target,{method:'HEAD'});assert.equal(asset.status,200,`${url}: ${m[1]}`);
+  if(target.pathname.endsWith('.css'))assert.match(asset.headers.get('content-type')||'',/^text\/css/);
+  if(target.pathname.endsWith('.js'))assert.match(asset.headers.get('content-type')||'',/(?:javascript|ecmascript)/);
  }
 }
 assert.equal((await fetch(origin+'/package.json')).status,404);

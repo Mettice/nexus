@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.cjs",
     "dev": "node server.js",
+    "preview": "node server.js --dist",
     "start": "node server.js"
   },
   "keywords": [],
