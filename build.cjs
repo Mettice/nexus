@@ -4,7 +4,7 @@ vm.runInContext(fs.readFileSync('js/data.js','utf8')+';this.catalog={PRODUCTS,CA
 vm.runInContext(fs.readFileSync('js/product-details.js','utf8'),context);
 vm.runInContext(fs.readFileSync('js/product-photos.js','utf8'),context);
 const {PRODUCTS,CATEGORIES,BRANDS}=vm.runInContext('({PRODUCTS,CATEGORIES,BRANDS})',context);
-const origin=(process.env.SITE_URL||'https://nexus-distro.com').replace(/\/$/,'');
+const origin=(process.env.SITE_URL||'https://www.nexusdustribution.com').replace(/\/$/,'');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const productUrl=p=>`/products/${p.id}/`;
 const story=p=>`<section class="product-story" aria-label="Product description"><div><span class="eyebrow">THE PRODUCT / ${escape(p.categoryName)}</span><h2>${escape(p.storyTitle)}</h2>${p.fullDescription.map(t=>`<p>${escape(t)}</p>`).join('')}</div><div><h3>Where it fits</h3><ul>${p.bestFor.map(t=>`<li>${escape(t)}</li>`).join('')}</ul><h3>Make your enquiry specific</h3><ul>${p.enquiryChecklist.map(t=>`<li>${escape(t)}</li>`).join('')}</ul><p>For ingredient, allergen, nutrition and storage information, request the label and specification for the exact product format.</p></div></section>`;
@@ -28,6 +28,11 @@ for(const p of PRODUCTS){
  save(url,page(p.name+' Wholesale',p.description,url,`<div class="detail-intro"><a href="/">Home</a> / <a href="/categories/${p.category}/">${escape(p.categoryName)}</a><h1>${escape(p.name)}</h1><p><a href="/brands/${p.brand}/">Explore the brand →</a></p></div><div class="detail-product"><img src="/${p.image}" alt="${escape(p.name)}" width="600" height="400" fetchpriority="high"><div><p>${escape(p.description)}</p><dl><dt>Brand</dt><dd><a href="/brands/${p.brand}/">${escape(p.brandName)}</a></dd><dt>Product range</dt><dd>${escape(p.categoryName)}</dd><dt>Format</dt><dd>${escape(p.packaging)}</dd></dl><a class="btn btn-primary" href="mailto:trade@nexus-distro.com?subject=${encodeURIComponent('Wholesale inquiry: '+p.name)}">Enquire about this product ↗</a><p>Confirm product information and availability with the trade desk.</p></div></div>${story(p)}<h2>More to discover</h2><div class="product-grid">${related.length?related.map(card).join(''):'<p>Explore more products in the <a href="/#wholesale-catalog">wholesale catalog</a>.</p>'}</div>`,{'@context':'https://schema.org','@type':'Product',name:p.name,sku:p.sku,description:p.description,image:origin+'/'+p.image,brand:{'@type':'Brand',name:p.brandName},url:origin+url}));
 }
 let home=fs.readFileSync('index.html','utf8');
+// Keep homepage SEO URLs consistent with generated pages and SITE_URL overrides.
+home=home.replace(/<link rel="canonical"[^>]*>/,`<link rel="canonical" href="${origin}/">`);
+home=home.replace(/<meta property="og:url"[^>]*>/,`<meta property="og:url" content="${origin}/">`);
+home=home.replace(/<meta property="og:image"[^>]*>/,`<meta property="og:image" content="${origin}/assets/hero_logistics.jpg">`);
+home=home.replace(/<meta name="twitter:image"[^>]*>/,`<meta name="twitter:image" content="${origin}/assets/hero_logistics.jpg">`);
 home=home.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/,`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':origin+'/#organization',name:'Nexus Wholesale & Global Distribution',url:origin,logo:origin+'/assets/favicon.svg'},{'@type':'WebSite',url:origin,name:'Nexus Wholesale & Global Distribution'}]})}</script>`);
 home=home.replace(/<div class="product-grid" id="product-grid">[\s\S]*?<\/div>/,`<div class="product-grid" id="product-grid">${PRODUCTS.map(card).join('')}</div>`);
 home=home.replace(/<div id="category-discovery" class="category-discovery">[\s\S]*?<\/div>/,`<div id="category-discovery" class="category-discovery">${CATEGORIES.filter(c=>c.id!=='all').map(c=>`<a class="category-tile" href="/categories/${c.id}/">${escape(c.name)}</a>`).join('')}</div>`);

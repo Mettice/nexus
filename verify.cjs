@@ -3,6 +3,7 @@ const origin='http://localhost:'+(process.env.PORT||4180);
 (async()=>{
 const sitemap=fs.readFileSync('sitemap.xml','utf8');
 const urls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>new URL(m[1]).pathname);
+const canonicalOrigin=new URL([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)][0][1]).origin;
 const ctx=vm.createContext({});vm.runInContext(fs.readFileSync('js/data.js','utf8')+';this.expected=1+PRODUCTS.length+CATEGORIES.length-1+BRANDS.length-1;',ctx);assert.equal(urls.length,ctx.expected);assert.equal(new Set(urls).size,urls.length);
 for(const url of urls){
  const response=await fetch(origin+url);assert.equal(response.status,200,url);
@@ -10,6 +11,8 @@ for(const url of urls){
  if(url.startsWith('/products/')){assert.match(html,/class="product-story"/);assert.match(html,/Where it fits/);}
  assert.doesNotMatch(html,/[€£$]\s*\d/);assert.doesNotMatch(html,/undefined/);assert.match(html,/<link rel="canonical"/);assert.match(html,/<meta name="description"/);
  assert.doesNotMatch(html,/AI-generated|Available to source|Illustrative sourcing|Example variant/);
+ const canonical=html.match(/<link rel="canonical" href="([^"]+)"/);
+ assert.equal(canonical?.[1],canonicalOrigin+url,`Canonical domain mismatch: ${url}`);
  for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs))JSON.parse(m[1]);
  for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
   const target=new URL(m[1].replace(/&amp;/g,'&'),origin+url);

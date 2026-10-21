@@ -1,5 +1,9 @@
 # Project review and launch notes
 
+## Permanent domain
+
+The owner selected **https://www.nexusdustribution.com/**. The build now uses this domain consistently for canonicals, structured data, social metadata, sitemap URLs and robots.txt. An explicit `SITE_URL` override applies consistently to all pages. Vercel domain/DNS connection and Search Console ownership verification must be completed in the owner's accounts. Existing contact mailboxes remain unchanged until a replacement is confirmed.
+
 ## Latest revision — 21 October
 
 Removed generated category artwork and sourcing-example labels from the public site. Added fourteen Merkandi listing photos with private provenance in `product-photo-sources.json`. The owner confirmed purchasing through Merkandi; no public supplier partnership claims were added. The homepage now has a product-card hero, animated typography, a moving brand strip and a pinned scroll-controlled collection gallery. Mobile uses a vertical collection layout. Prices remain removed. `DESIGN-NOTES.md` describes the design and research sources.
