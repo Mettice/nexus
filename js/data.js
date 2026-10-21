@@ -1,0 +1,310 @@
+/**
+ * Nexus Wholesale & Global Distribution
+ * Product Catalog & Logistics Data Model
+ * Adheres to Design System Tokens for contestdistribution.com
+ */
+
+
+
+const BRANDS = [
+  { id: 'all', name: 'All Brands', count: 10 },
+  { id: 'ferrero', name: 'Ferrero Group', count: 3, origin: 'Italy / Germany' },
+  { id: 'mondelez', name: 'Mondelēz International', count: 2, origin: 'UK / Austria' },
+  { id: 'redbull', name: 'Red Bull GmbH', count: 1, origin: 'Austria' },
+  { id: 'pringles', name: 'Pringles (Kellanova)', count: 1, origin: 'Belgium / USA' },
+  { id: 'pmi', name: 'Philip Morris Int. (Bonded)', count: 1, origin: 'Switzerland / Germany' },
+  { id: 'haribo', name: 'Haribo', count: 1, origin: 'Germany' },
+  { id: 'lavazza', name: 'Lavazza S.p.A.', count: 1, origin: 'Italy' }
+];
+
+const CATEGORIES = [
+  { id: 'all', name: 'All Categories' },
+  { id: 'confectionery', name: 'Confectionery & Chocolate' },
+  { id: 'beverages', name: 'Energy & Soft Drinks' },
+  { id: 'snacks', name: 'Savory Snacks & Crisps' },
+  { id: 'biscuits', name: 'Biscuits & Bakery' },
+  { id: 'coffee', name: 'Coffee & Hot Beverages' },
+  { id: 'tobacco', name: 'Bonded Cigarettes (Duty-Free)' }
+];
+
+const PRODUCTS = [
+  {
+    id: 'prod-001',
+    sku: 'FER-BUE-43G-96',
+    name: 'Kinder Bueno T2 Milk & Hazelnut 43g',
+    brand: 'ferrero',
+    brandName: 'Ferrero',
+    category: 'confectionery',
+    categoryName: 'Confectionery & Chocolate',
+    image: 'assets/kinder_bueno.jpg',
+    origin: 'Germany / Poland',
+    packaging: '12 packs x 43g display (8 displays/master case)',
+    unitsPerCase: 96,
+    casesPerPallet: 72,
+    palletWeightKg: 420,
+    shelfLifeMonths: 10,
+    bbdGuarantee: 'Fresh Production (>9 Months)',
+    hsCode: '1806.32.90',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Hamburg', 'Dubai'],
+    stockStatus: 'In Stock (14 Pallets Available)',
+    description: 'Crispy wafer with creamy hazelnut filling coated in smooth European milk chocolate. Export-ready master cases with multilingual labeling (EN/DE/FR/IT/ES/AR).',
+    layersPerPallet: 8,
+    casesPerLayer: 9
+  },
+  {
+    id: 'prod-002',
+    sku: 'FER-NUT-750G-12',
+    name: 'Nutella Hazelnut Spread with Cocoa 750g',
+    brand: 'ferrero',
+    brandName: 'Ferrero',
+    category: 'confectionery',
+    categoryName: 'Confectionery & Chocolate',
+    image: 'assets/nutella_case.jpg',
+    origin: 'Italy / France',
+    packaging: '12 jars x 750g glass container',
+    unitsPerCase: 12,
+    casesPerPallet: 56,
+    palletWeightKg: 685,
+    shelfLifeMonths: 12,
+    bbdGuarantee: 'Fresh Stock (>10 Months)',
+    hsCode: '1806.90.70',
+    moqPallets: 2,
+    inStockHubs: ['Rotterdam', 'Dubai', 'Singapore'],
+    stockStatus: 'In Stock (22 Pallets Available)',
+    description: 'Iconic hazelnut spread prepared with quality ingredients. Protected heavy-duty cardboard exporter shipping carton shrink-wrapped for maritime container transit.',
+    layersPerPallet: 7,
+    casesPerLayer: 8
+  },
+  {
+    id: 'prod-003',
+    sku: 'FER-ROC-T30-12',
+    name: 'Ferrero Rocher T30 Diamond Gift Box 375g',
+    brand: 'ferrero',
+    brandName: 'Ferrero',
+    category: 'confectionery',
+    categoryName: 'Confectionery & Chocolate',
+    image: 'assets/ferrero_rocher.jpg',
+    origin: 'Italy',
+    packaging: '12 display boxes x 30 pieces',
+    unitsPerCase: 12,
+    casesPerPallet: 48,
+    palletWeightKg: 310,
+    shelfLifeMonths: 9,
+    bbdGuarantee: 'Air-Conditioned Bonded Stock (>7 Months)',
+    hsCode: '1806.90.19',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Hamburg'],
+    stockStatus: 'Seasonal Allocation (8 Pallets)',
+    description: 'Whole crunchy hazelnut in heart, delicious creamy hazelnut filling, crisp wafer shell covered with milk chocolate and gently roasted pieces. High-value gift carton.',
+    layersPerPallet: 6,
+    casesPerLayer: 8
+  },
+  {
+    id: 'prod-004',
+    sku: 'RDB-CAN-250ML-24',
+    name: 'Red Bull Energy Drink Regular 250ml Slim Can',
+    brand: 'redbull',
+    brandName: 'Red Bull GmbH',
+    category: 'beverages',
+    categoryName: 'Energy & Soft Drinks',
+    image: 'assets/redbull_tray.jpg',
+    origin: 'Austria / Switzerland',
+    packaging: '24 cans x 250ml shrink-wrapped tray',
+    unitsPerCase: 24,
+    casesPerPallet: 108,
+    palletWeightKg: 740,
+    shelfLifeMonths: 24,
+    bbdGuarantee: 'Factory Direct (>20 Months)',
+    hsCode: '2202.99.19',
+    moqPallets: 2,
+    inStockHubs: ['Rotterdam', 'Hamburg', 'Dubai', 'Singapore'],
+    stockStatus: 'High Volume Continuous Supply',
+    description: 'Vitalizes body and mind. 100% recyclable aluminum cans in export trays. Full container load (FCL) 24-pallet or 33-pallet mega-truck configurations available.',
+    layersPerPallet: 9,
+    casesPerLayer: 12
+  },
+  {
+    id: 'prod-005',
+    sku: 'HAR-GLD-160G-24',
+    name: 'Haribo Goldbears Original Fruit Gums 160g',
+    brand: 'haribo',
+    brandName: 'Haribo',
+    category: 'confectionery',
+    categoryName: 'Confectionery & Chocolate',
+    image: 'assets/haribo_pack.jpg',
+    origin: 'Germany',
+    packaging: '24 hanging pouches x 160g display carton',
+    unitsPerCase: 24,
+    casesPerPallet: 80,
+    palletWeightKg: 360,
+    shelfLifeMonths: 14,
+    bbdGuarantee: 'Fresh Production (>12 Months)',
+    hsCode: '1704.90.65',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Hamburg'],
+    stockStatus: 'In Stock (18 Pallets Available)',
+    description: 'The original iconic gummy bear in six delicious fruity flavours. Export packaged display carton ideal for international retail distribution.',
+    layersPerPallet: 8,
+    casesPerLayer: 10
+  },
+  {
+    id: 'prod-006',
+    sku: 'MDZ-MLK-100G-20',
+    name: 'Milka Alpine Milk Chocolate Bar 100g',
+    brand: 'mondelez',
+    brandName: 'Mondelēz International',
+    category: 'confectionery',
+    categoryName: 'Confectionery & Chocolate',
+    image: 'assets/milka_carton.jpg',
+    origin: 'Germany / Austria',
+    packaging: '20 bars x 100g display master box',
+    unitsPerCase: 20,
+    casesPerPallet: 144,
+    palletWeightKg: 340,
+    shelfLifeMonths: 12,
+    bbdGuarantee: 'Fresh Stock (>10 Months)',
+    hsCode: '1806.32.10',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Dubai'],
+    stockStatus: 'In Stock (30 Pallets Available)',
+    description: 'Made with 100% Alpine milk. European consumer favorite chocolate bar in compact retail display boxes. High volume wholesale turnover item.',
+    layersPerPallet: 12,
+    casesPerLayer: 12
+  },
+  {
+    id: 'prod-007',
+    sku: 'MDZ-ORE-394G-12',
+    name: 'Oreo Original Sandwich Cookies 394g',
+    brand: 'mondelez',
+    brandName: 'Mondelēz International',
+    category: 'biscuits',
+    categoryName: 'Biscuits & Bakery',
+    image: 'assets/oreo_box.jpg',
+    origin: 'United Kingdom / Spain',
+    packaging: '12 retail packs x 394g master shipper carton',
+    unitsPerCase: 12,
+    casesPerPallet: 64,
+    palletWeightKg: 380,
+    shelfLifeMonths: 12,
+    bbdGuarantee: 'Fresh Export Pack (>9 Months)',
+    hsCode: '1905.31.19',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Hamburg', 'Dubai'],
+    stockStatus: 'In Stock (26 Pallets Available)',
+    description: 'Rich cocoa biscuits with signature vanilla cream center. Solid export grade packaging resistant to humidity and marine freight vibration.',
+    layersPerPallet: 8,
+    casesPerLayer: 8
+  },
+  {
+    id: 'prod-008',
+    sku: 'LAV-ORO-250G-12',
+    name: 'Lavazza Qualità Oro Ground Coffee 250g',
+    brand: 'lavazza',
+    brandName: 'Lavazza S.p.A.',
+    category: 'coffee',
+    categoryName: 'Coffee & Hot Beverages',
+    image: 'assets/lavazza_box.jpg',
+    origin: 'Italy',
+    packaging: '12 vacuum foil packs x 250g master carton',
+    unitsPerCase: 12,
+    casesPerPallet: 90,
+    palletWeightKg: 330,
+    shelfLifeMonths: 24,
+    bbdGuarantee: 'Factory Sealed Vacuum (>18 Months)',
+    hsCode: '0901.21.00',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Dubai', 'Singapore'],
+    stockStatus: 'In Stock (12 Pallets Available)',
+    description: '100% Arabica premium blend selection with aromatic floral and fruit notes. Vacuum sealed European roast for international high-end supermarkets and cafes.',
+    layersPerPallet: 10,
+    casesPerLayer: 9
+  },
+  {
+    id: 'prod-009',
+    sku: 'PRG-MIX-165G-18',
+    name: 'Pringles Original & Sour Cream 165g Master Shipper',
+    brand: 'pringles',
+    brandName: 'Pringles / Kellanova',
+    category: 'snacks',
+    categoryName: 'Savory Snacks & Crisps',
+    image: 'assets/pringles_case.jpg',
+    origin: 'Belgium',
+    packaging: '18 cylindrical cans x 165g master shipper carton',
+    unitsPerCase: 18,
+    casesPerPallet: 72,
+    palletWeightKg: 285,
+    shelfLifeMonths: 15,
+    bbdGuarantee: 'Fresh Factory Sealed (>12 Months)',
+    hsCode: '1905.90.80',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Hamburg', 'Dubai'],
+    stockStatus: 'In Stock (36 Pallets Available)',
+    description: 'World-famous hyperbolic paraboloid potato crisps in iconic protective cans. Export shipper carton engineered to prevent chip breakage during ocean container transit.',
+    layersPerPallet: 9,
+    casesPerLayer: 8
+  },
+  {
+    id: 'prod-010',
+    sku: 'PMI-MLB-RED-500',
+    name: 'Marlboro Red King Size 20s Duty-Free Master Shipper',
+    brand: 'pmi',
+    brandName: 'Philip Morris International',
+    category: 'tobacco',
+    categoryName: 'Bonded Cigarettes (Duty-Free)',
+    image: 'assets/cigarettes_case.jpg',
+    origin: 'Switzerland / Germany',
+    packaging: '50 outer cartons x 10 packs (500 packs / 10,000 sticks)',
+    unitsPerCase: 50,
+    casesPerPallet: 50,
+    palletWeightKg: 290,
+    shelfLifeMonths: 24,
+    bbdGuarantee: 'Bonded Export Warehouse Stock',
+    hsCode: '2402.20.90',
+    moqPallets: 1,
+    inStockHubs: ['Rotterdam', 'Dubai JAFZA', 'Singapore Jurong'],
+    stockStatus: 'Bonded Allocation (T1 Transit)',
+    description: 'Duty-free bonded export master carton with tamper-evident security tape and international transit markings. Available for re-export outside EU under T1 / JAFZA free-zone customs escrow.',
+    layersPerPallet: 5,
+    casesPerLayer: 10
+  }
+];
+
+// Additional pack formats are illustrative sourcing requests, not confirmed stock.
+CATEGORIES.push({id:'spreads',name:'Spreads & Breakfast'},{id:'gifting',name:'Chocolate Gifts'});
+PRODUCTS.find(p=>p.id==='prod-002').category='spreads';
+PRODUCTS.find(p=>p.id==='prod-002').categoryName='Spreads & Breakfast';
+PRODUCTS.find(p=>p.id==='prod-003').category='gifting';
+PRODUCTS.find(p=>p.id==='prod-003').categoryName='Chocolate Gifts';
+[
+ ['prod-001','prod-011','FER-BUE-WHITE-43','Kinder Bueno White 43g'],
+ ['prod-004','prod-012','RDB-SF-250-24','Red Bull Sugarfree 250ml'],
+ ['prod-007','prod-013','MDZ-ORE-DBL-REQUEST','Oreo Double Creme'],
+ ['prod-009','prod-014','PRG-PAP-165-REQUEST','Pringles Paprika 165g']
+].forEach(([source,id,sku,name])=>{
+ const base=PRODUCTS.find(p=>p.id===source);
+ PRODUCTS.push({...base,id,sku,name,illustrative:true,stockStatus:'Sourcing request — subject to confirmation',description:'Example range extension. Ask the trade desk to confirm this variant, pack size, origin, pallet specification, availability. Reference image shows the existing product family.'});
+});
+// Buyer-requested ranges. Exact retail formats and case configurations are confirmed per enquiry.
+BRANDS.push({id:'nestle',name:'Nestlé',origin:'Product-specific'},{id:'kinder',name:'Kinder',origin:'Product-specific'},{id:'nutella',name:'Nutella',origin:'Product-specific'},{id:'oreo',name:'Oreo',origin:'Product-specific'});
+PRODUCTS.filter(p=>p.name.startsWith('Kinder')).forEach(p=>p.brand='kinder');
+PRODUCTS.filter(p=>p.name.startsWith('Nutella')).forEach(p=>p.brand='nutella');
+PRODUCTS.filter(p=>p.name.startsWith('Oreo')).forEach(p=>p.brand='oreo');
+[
+ ['kinder-chocolate','Kinder Chocolate','kinder','Kinder','confectionery','Milk chocolate portions for confectionery shelves, convenience retail and multipack assortments. Ask about current retail formats and wholesale case configurations.'],
+ ['kinder-joy','Kinder Joy','kinder','Kinder','confectionery','A confectionery range combining a sweet treat with a surprise toy. Request market-specific packaging, available formats and case quantities for your destination.'],
+ ['raffaello','Raffaello Coconut & Almond Confectionery','ferrero','Ferrero','gifting','Coconut and almond confectionery for gift displays and premium sweet assortments. Enquire about gift boxes, seasonal formats and wholesale packing options.'],
+ ['tic-tac','Tic Tac Mints','ferrero','Ferrero','confectionery','Pocket-sized mint confectionery for checkout displays and convenience stores. Ask about available flavours, dispenser sizes and display cases.'],
+ ['kitkat','KitKat Chocolate Wafers','nestle','Nestlé','confectionery','Chocolate wafer bars for everyday snacking and retail confectionery ranges. Request available bar formats, multipacks and wholesale case options.'],
+ ['smarties','Smarties Chocolate Confectionery','nestle','Nestlé','confectionery','Colourful chocolate confectionery for sweet assortments and sharing occasions. Ask about current tubes, bags and multipack options for your market.'],
+ ['belvita','belVita Breakfast Biscuits','mondelez','Mondelēz International','biscuits','Breakfast biscuits for grocery shelves, convenience stores and on-the-go assortments. Enquire about flavours, individual portions and retail multipacks.'],
+ ['oreo-mini','Oreo Mini Cookies','oreo','Oreo','biscuits','Bite-sized sandwich cookies for snack selections and portioned retail formats. Ask about available bags, cups, multipacks and wholesale configurations.'],
+ ['lavazza-beans','Lavazza Whole Coffee Beans','lavazza','Lavazza','coffee','Whole coffee beans for coffee shops, offices and retail coffee ranges. Request available blends, roast profiles and bag formats for your customers.'],
+ ['lavazza-ground','Lavazza Ground Coffee Range','lavazza','Lavazza','coffee','Ground coffee options for retail shelves and hospitality buyers. Tell us your preferred blend, brewing method and pack format so we can match the range.'],
+ ['nescafe','Nescafé Instant Coffee','nestle','Nestlé','coffee','Instant coffee for grocery, office and hospitality assortments. Enquire about available blends, jars, refill formats and wholesale case quantities.'],
+ ['pringles-sour-cream','Pringles Sour Cream & Onion','pringles','Pringles','snacks','Sour cream and onion flavoured crisps for savoury snack ranges. Request current can sizes, case configurations and market-specific labels.'],
+ ['pringles-bbq','Pringles Barbecue','pringles','Pringles','snacks','Barbecue flavoured crisps for convenience and grocery snack shelves. Ask about available pack formats and wholesale case options.'],
+ ['nutella-retail','Nutella Retail Jar Range','nutella','Nutella','spreads','Hazelnut spread with cocoa for breakfast and grocery shelves. Compare available retail jar formats and request case quantities suited to your assortment.'],
+ ['nutella-foodservice','Nutella Food Service Range','nutella','Nutella','spreads','Hazelnut spread with cocoa for bakeries, cafés and hospitality kitchens. Ask about catering formats, portion options and packaging suited to your service.']
+].forEach(([id,name,brand,brandName,category,description])=>PRODUCTS.push({id,name,brand,brandName,category,categoryName:CATEGORIES.find(c=>c.id===category).name,image:`assets/range-${id}.svg`,sourcing:true,sku:`NXS-${id.toUpperCase()}`,packaging:'Pack formats and case quantities available on enquiry.',description,origin:'Confirm for the selected format'}));
+BRANDS.forEach(b=>b.count=PRODUCTS.filter(p=>b.id==='all'||p.brand===b.id).length);

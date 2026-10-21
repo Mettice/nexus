@@ -1,0 +1,14 @@
+{
+  "name": "nexus-wholesale-distribution",
+  "version": "1.0.0",
+  "description": "Nexus Wholesale & Global Logistics Distribution Platform",
+  "main": "server.js",
+  "scripts": {
+    "build": "node build.cjs",
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,86 @@
+{
+  "kinder-chocolate": {
+    "file": "assets/product-kinder-chocolate.webp",
+    "listing": "https://merkandi.com/products/kinder-chocolate-t8-100gr-4/1492392",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2026/02/27/kinder-t8-2-jpg-1e3i-1772188637-1772188865.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "kinder-joy": {
+    "file": "assets/product-kinder-joy.webp",
+    "listing": "https://merkandi.com/products/kinder-joy-single-food-description-24/1119015",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2024/10/27/3896_671de45b85ec0.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "raffaello": {
+    "file": "assets/product-raffaello.webp",
+    "listing": "https://merkandi.com/products/ferrero-raffaello-confetteria-150-g-15-pcs-ean8000500023976/1516299",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2026/04/09/rafaellopng-1775733824-1775733948.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "tic-tac": {
+    "file": "assets/product-tic-tac.webp",
+    "listing": "https://merkandi.com/products/tic-tac-mint-gr-18-food1555/1117089",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2024/10/20/0000080052043_67153aecc54e9.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "kitkat": {
+    "file": "assets/product-kitkat.webp",
+    "listing": "https://merkandi.com/products/kitkat-wholesale/1252445",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2025/04/03/merkandi-pics-22png-1743678056-1743678161.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "smarties": {
+    "file": "assets/product-smarties.webp",
+    "listing": "https://merkandi.com/products/smarties-single-tube-gr-38-food1974/1117451",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2024/10/20/249334-3502510-00-nestle-smarties-38gx24-64681-1614849938_67153b8515874.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "belvita": {
+    "file": "assets/product-belvita.webp",
+    "listing": "https://merkandi.com/products/belvita-50gr-from-bulgaria/838179",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2023/08/24/untitled-design-2png-1692881799-1692881833.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "lavazza-beans": {
+    "file": "assets/product-lavazza-beans.webp",
+    "listing": "https://merkandi.com/products/lavazza-qualita-oro-whole-coffee-beans-1kg-ean8000070020566/1516295",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2026/04/09/qualita-oropng-1775733219-1775733300.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "lavazza-ground": {
+    "file": "assets/product-lavazza-ground.webp",
+    "listing": "https://merkandi.com/products/lavazza-crema-e-gusto-ground-coffee-250g/953067",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2024/03/09/81exphsvxl-sl1500-1709979289-1709979303.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "nescafe": {
+    "file": "assets/product-nescafe.webp",
+    "listing": "https://merkandi.com/products/premium-offer-nescafe-gold-190g/1404884",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2025/06/21/9ce291d2733393c2527c84c80bfdb01dpng-720x720q80png-1750522349-1750522386.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "pringles-sour-cream": {
+    "file": "assets/product-pringles-sour-cream.webp",
+    "listing": "https://merkandi.com/products/pringles-gr-70-cream-e-onion-food1917/1117406",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2024/10/20/7f149e0b-e5ed-4d72-b12a-633e8a0f48d3_67153b735cbd6.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "pringles-bbq": {
+    "file": "assets/product-pringles-bbq.webp",
+    "listing": "https://merkandi.com/products/pringles-smokin-bbq-ribs-165g/1437641",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2025/09/29/merkandi-pics-2025-07-17t131737358png-1759135103-1759135129.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "nutella-retail": {
+    "file": "assets/product-nutella-retail.webp",
+    "listing": "https://merkandi.com/products/nutella-chocolate-hazelnut-spread-with-cocoa-200-g-ean80135463/1516297",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2026/04/09/nutella200png-1775733604-1775733682.jpg",
+    "retrieved": "2026-10-21"
+  },
+  "nutella-foodservice": {
+    "file": "assets/product-nutella-foodservice.webp",
+    "listing": "https://merkandi.com/products/nutella-hazelnut-spread-3-kilo-food-service-brand-nutella-ean-8000500131329/930576",
+    "image": "https://images.merstatic.com/imgcache/680x357/images/offer/2026/02/27/nutella-t3k-ferrero-3kg-1684075-5-43a2009f0a7f86bc19801cd14b602453webp-1772187069.jpg",
+    "retrieved": "2026-10-21"
+  }
+}

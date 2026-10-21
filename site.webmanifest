@@ -1,0 +1,16 @@
+{
+  "name": "Nexus Wholesale & Global Distribution",
+  "short_name": "Nexus B2B",
+  "description": "Tier-1 European FMCG Wholesale & Ocean Freight Logistics Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#155B96",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
