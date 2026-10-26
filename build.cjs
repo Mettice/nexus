@@ -9,7 +9,7 @@ const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const productUrl=p=>`/products/${p.id}/`;
 const story=p=>`<section class="product-story" aria-label="Product description"><div><span class="eyebrow">THE PRODUCT / ${escape(p.categoryName)}</span><h2>${escape(p.storyTitle)}</h2>${p.fullDescription.map(t=>`<p>${escape(t)}</p>`).join('')}</div><div><h3>Where it fits</h3><ul>${p.bestFor.map(t=>`<li>${escape(t)}</li>`).join('')}</ul><h3>Make your enquiry specific</h3><ul>${p.enquiryChecklist.map(t=>`<li>${escape(t)}</li>`).join('')}</ul><p>For ingredient, allergen, nutrition and storage information, request the label and specification for the exact product format.</p></div></section>`;
 const card=p=>`<article class="detail-card"><a href="${productUrl(p)}"><img src="/${p.image}" alt="${escape(p.name)}" width="300" height="200" loading="lazy"><h2>${escape(p.name)}</h2></a><p>${escape(p.packaging)}</p><a href="${productUrl(p)}">Explore product →</a></article>`;
-function page(title,description,url,body,schema){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)} | Nexus Wholesale</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${origin}${url}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${origin}${url}"><meta property="og:type" content="website"><meta property="og:image" content="${origin}/assets/hero_logistics.jpg"><link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/enhancements.css"><link rel="stylesheet" href="/css/editorial.css"><link rel="stylesheet" href="/css/motion-design.css"><script src="/js/motion.js" defer></script><script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script></head><body><main class="detail-shell"><nav class="detail-nav" aria-label="Main navigation"><a href="/">NEXUS / WHOLESALE</a><a href="/#wholesale-catalog">Browse catalog ↗</a></nav>${body}<footer class="detail-footer">Nexus Wholesale · <a href="/#contact">Contact the trade desk</a> · Contact us for product information and availability.</footer></main></body></html>`;}
+function page(title,description,url,body,schema){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)} | Nexus Wholesale</title><meta name="description" content="${escape(description)}"><meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><link rel="canonical" href="${origin}${url}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${origin}${url}"><meta property="og:type" content="website"><meta property="og:image" content="${origin}/assets/hero_logistics.jpg"><link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/enhancements.css"><link rel="stylesheet" href="/css/editorial.css"><link rel="stylesheet" href="/css/motion-design.css"><script src="/js/motion.js" defer></script><script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script></head><body><main class="detail-shell"><nav class="detail-nav" aria-label="Main navigation"><a href="/">NEXUS / WHOLESALE</a><a href="/#wholesale-catalog">Browse catalog ↗</a></nav>${body}<footer class="detail-footer">Nexus Wholesale · <a href="/#contact">Contact the trade desk</a> · Contact us for product information and availability.</footer></main></body></html>`;}
 const urls=['/'];
 for(const brand of BRANDS.filter(b=>b.id!=='all')){
  const products=PRODUCTS.filter(p=>p.brand===brand.id);
@@ -38,8 +38,21 @@ home=home.replace(/<div class="product-grid" id="product-grid">[\s\S]*?<\/div>/,
 home=home.replace(/<div id="category-discovery" class="category-discovery">[\s\S]*?<\/div>/,`<div id="category-discovery" class="category-discovery">${CATEGORIES.filter(c=>c.id!=='all').map(c=>`<a class="category-tile" href="/categories/${c.id}/">${escape(c.name)}</a>`).join('')}</div>`);
 home=home.replace(/<div class="brands-grid" id="brands-grid">[\s\S]*?<\/div>/, '<div class="brands-grid" id="brands-grid">'+BRANDS.filter(b=>b.id!=='all').map(b=>`<a class="brand-badge-card" href="/brands/${b.id}/">${escape(b.name)} wholesale →</a>`).join('')+'</div>');
 fs.writeFileSync('index.html',home);
-fs.writeFileSync('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${escape(origin+url)}</loc></url>`).join('')}</urlset>`);
-fs.writeFileSync('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
+const today = new Date().toISOString().split('T')[0];
+const sitemapEntries = urls.map(url => {
+  let priority = '0.7';
+  let changefreq = 'weekly';
+  if (url === '/') {
+    priority = '1.0';
+    changefreq = 'daily';
+  } else if (url.startsWith('/categories/') || url.startsWith('/brands/')) {
+    priority = '0.8';
+    changefreq = 'weekly';
+  }
+  return `  <url>\n    <loc>${escape(origin + url)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+}).join('\n');
+fs.writeFileSync('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`);
+fs.writeFileSync('robots.txt',`User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
 console.log(`Built ${urls.length} indexable pages.`);
 
 // Deploy the complete public site as static files. Do not deploy the local Node
