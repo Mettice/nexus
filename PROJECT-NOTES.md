@@ -31,7 +31,7 @@ Run `npm run build` after catalog changes, then `npm start`. The default address
 
 ## Before launch
 
-- Confirm the production domain. The existing domain is https://nexus-distro.com. `SITE_URL` controls generated page URLs and the sitemap; update the homepage canonical and social URLs too if changing domains.
+- Confirm the production domain (https://www.nexusdustribution.com). `SITE_URL` controls generated page URLs and the sitemap.
 - Confirm existing company identity, contact information, brand relationships, logistics claims, certifications, product specifications, prices and stock. Existing commercial content has not been independently verified.
 - New variants explicitly use product-family reference images and are sourcing examples; replace them with verified specifications and correct photography before treating them as stock.
 - The form requires an email application. Connect a real mail service if server-side delivery is needed. RFQ state currently lasts for the browser session only and currency conversion uses fixed illustrative rates.
